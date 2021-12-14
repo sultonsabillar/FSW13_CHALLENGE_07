@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+
+    <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="absolute top-5 left-5">
+            <a href="/user/dashboard" class="flex items-center gap-2 text-lg font-semibold hover:text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back
+            </a>
+        </div>
+
+
+        <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+            <% if (typeof errors !='undefined' ) { %>
+
+                <div class="bg-red-300 p-5 rounded-md text-white text-left">
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </div>
+
+                <% } %>
+
+                    <% if (typeof errorMessage !='undefined' ) { %>
+                        <div class="bg-red-300 p-4 rounded-md text-white text-xl">
+                            <%= errorMessage %>
+                        </div>
+                        <% } %>
+
+                            <h2 class="mt-6 text-2xl font-bold text-gray-800">Buat Room Baru</h2>
+        </div>
+        <div class="mt-8 sm:mx-auto w-full md:w-1/2 px-4 sm:px-10">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <form action="/user/make-room" method="POST" class="space-y-5">
+                    <% if (typeof kode_unik == 'undefined') { %>
+                        <div>
+                            <label for="nama_room" class="block text-sm font-medium text-gray-700">Nama Room</label>
+                            <div class="mt-1">
+                                <input id="nama_room" name="nama_room" type="text" autocomplete="nama_room"
+                                    required="required" value
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-800 focus:border-blue-800 sm:text-sm" />
+                            </div>
+                        </div>
+                    <% } %>
+                    <% if (typeof kode_unik != 'undefined') { %>
+                        <div class="flex items-end justify-between gap-x-2">
+                            <div class="w-5/12">
+                                <label for="username" class="block text-sm font-medium text-gray-700">Kode Unik Room</label>
+                                <div class="mt-1">
+                                    <input id="username" name="username" type="text" autocomplete="username"
+                                        required="required" readonly value=" <%= kode_unik %>  "
+                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-800 focus:border-blue-800 sm:text-xl font-medium text-red-500" />
+                                </div>
+                            </div >  
+                            <div class="w-4/12">
+                                <a href="/user/input-room" 
+                                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 items-center bg-blue-600 hover:bg-blue-800 focus:ring-blue-800">
+                                    <span class="text-base">Let's Play</span>
+                                </a>
+                            </div>
+                        </div> 
+                    <% } %>                     
+                    
+                    <% if (typeof kode_unik == 'undefined') { %>
+                        <div>
+                            <button type="submit"
+                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 items-center bg-blue-600 hover:bg-blue-800 focus:ring-blue-800">
+                                <span class="text-base">Buat Room</span>
+                            </button>
+                        </div>
+                    <% } else {%>
+                        <div class="mt-5">
+                            <a href="/user/make-room" 
+                                    class=" text-sm font-medium text-red-500 hover:text-red-600 hover:underline transition-all">
+                                    <span class="text-base">Buat Room Lagi ?</span>
+                        </a>
+                        </div>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

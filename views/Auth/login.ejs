@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+
+<body>
+
+    <div class="min-h-screen bg-gray-50 flex">
+        <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+            <div class="mx-auto w-full max-w-sm lg:w-96">
+                <div class="absolute top-5 left-5">
+                    <a href="/" class="flex items-center gap-2 text-lg font-semibold hover:text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Home
+                    </a>
+                </div>
+
+
+                <% if (typeof errors !='undefined' ) { %>
+
+                    <% errors.forEach(error=> { %>
+                        <%= error.msg %>
+                            <% }) %>
+                                <% } %>
+
+                                    <% if (typeof errorMessage !='undefined' ) { %>
+                                        <div class="bg-red-300 p-4 rounded-md text-white text-xl text-center">
+                                            <%= errorMessage %>
+                                        </div>
+                                        <% } %>
+
+
+                                            <div class="text-center">
+                                                <h2 class="mt-6 text-2xl font-bold text-gray-800">Login ke akun anda
+                                                </h2>
+                                            </div>
+
+                                            <div class="mt-8">
+                                                <div
+                                                    class="bg-white lg:bg-gray-50 py-8 px-4 sm:px-10 lg:p-0 shadow rounded-lg lg:shadow-none lg:rounded-none">
+                                                    <form action="/login" method="POST" class="space-y-6">
+                                                        <div>
+                                                            <label for="username"
+                                                                class="block text-sm font-medium text-gray-700">
+                                                                Username</label>
+                                                            <div class="mt-1">
+                                                                <input id="username" name="username" type="username"
+                                                                    autocomplete="username" required
+                                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-800 focus:border-blue-800 sm:text-sm" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="space-y-1">
+                                                            <label for="password"
+                                                                class="block text-sm font-medium text-gray-700">Password</label>
+                                                            <div class="mt-1">
+                                                                <input id="password" name="password" type="password"
+                                                                    autocomplete="current-password" required
+                                                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-800 focus:border-blue-800 sm:text-sm" />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="flex items-center justify-between">
+                                                            <div class="text-sm">
+                                                                <p>Belum punya akun?</p>
+                                                                <a href="/register"
+                                                                    class="font-medium text-blue-600 hover:text-blue-800">Daftar
+                                                                    dulu
+                                                                    ya!</a>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div>
+                                                            <button type="submit"
+                                                                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-800">Masuk</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+            </div>
+        </div>
+        <div class="hidden lg:block relative w-0 flex-1">
+            <img class="absolute inset-0 h-full w-full object-cover"
+                src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+                alt />
+        </div>
+    </div>
+
+</body>
+
+</html>
